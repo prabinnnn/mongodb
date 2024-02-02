@@ -1,49 +1,55 @@
 const bookcontroller = require("./book.controller");
 const router = require("express").Router();
-router.get("/", (res, req, next) => {
+
+router.get("/", async (req, res, next) => {
   try {
-    result = bookcontroller.get(req.body);
+    result = await bookcontroller.get(req.body);
     res.json({ msg: result });
   } catch (e) {
     next(e);
   }
 });
-router.post("/", (res, req, next) => {
+
+router.post("/", async (req, res, next) => {
   try {
-    result = bookcontroller.create(req.body);
+    result = await bookcontroller.create(req.body);
     res.json({ msg: result });
   } catch (e) {
     next(e);
   }
 });
-router.put("/:id", (res, req, next) => {
+
+router.put("/:id", async (req, res, next) => {
   try {
-    id = req.params.Id;
+    id = req.params.id; // Corrected the parameter name
     data = req.body;
-    result = bookcontroller.updateByid(id, data);
+    result = await bookcontroller.updateByid(id, data);
     res.json({ msg: result });
   } catch (e) {
     next(e);
   }
 });
-router.patch("/:id", (res, req, next) => {
+
+router.patch("/:id", async (req, res, next) => {
   try {
-    id = req.params.Id;
+    id = req.params.id; // Corrected the parameter name
     data = req.body;
-    result = bookcontroller.updateByid(id, data);
+    result = await bookcontroller.updateByid(id, data);
     res.json({ msg: result });
   } catch (e) {
     next(e);
   }
 });
-router.delete("/:id", (res, req, next) => {
+
+router.delete("/:id", async (req, res, next) => {
   try {
-    id = req.params.Id;
+    id = req.params.id; // Corrected the parameter name
     data = req.body;
-    result = bookcontroller.remove(id, data);
+    result = await bookcontroller.remove(id, data);
     res.json({ msg: result });
   } catch (e) {
     next(e);
   }
 });
+
 module.exports = router;
